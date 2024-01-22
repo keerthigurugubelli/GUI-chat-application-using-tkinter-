@@ -1,0 +1,66 @@
+from tkinter import *
+
+# GUI
+root = Tk()
+root.title("gui Chatbot")
+
+BG_GRAY = "#F2F2F2"
+BG_COLOR = "#3498DB"
+TEXT_COLOR = "#2C3E50"
+FONT = "Arial 14"
+FONT_BOLD = "Arial 14 bold"
+
+# Send function
+def send():
+    user_input = e.get().lower()
+    send_message("You -> " + user_input)
+
+    if user_input == "hello":
+        send_message("Bot -> Hi there! How can I assist you?")
+
+    elif user_input in ["hi", "hii", "hiiii"]:
+        send_message("Bot -> Hello! What can I do for you today?")
+
+    elif user_input == "how are you":
+        send_message("Bot -> I'm doing well! How about you?")
+
+    elif user_input in ["fine", "i am good", "i am doing good"]:
+        send_message("Bot -> That's great! How can I help you today?")
+
+    elif user_input in ["thanks", "thank you", "now its my time"]:
+        send_message("Bot -> You're welcome!")
+
+    elif user_input in ["what do you offer", "what kinds of items do you have", "do you have something"]:
+        send_message("Bot -> We offer a variety of coffee and tea.")
+
+    elif user_input in ["tell me a joke", "tell me something funny", "crack a funny line"]:
+        send_message("Bot -> Why don't scientists trust atoms? Because they make up everything!")
+
+    elif user_input in ["goodbye", "see you later", "see yaa"]:
+        send_message("Bot -> Goodbye! Have a nice day.")
+
+    else:
+        send_message("Bot -> Sorry, I didn't understand that.")
+
+    e.delete(0, END)
+
+def send_message(message):
+    txt.insert(END, "\n" + message)
+
+# GUI components
+label1 = Label(root, bg=BG_COLOR, fg=TEXT_COLOR, text="Welcome", font=FONT_BOLD, pady=10, width=20, height=1)
+label1.grid(row=0)
+
+txt = Text(root, bg=BG_COLOR, fg=TEXT_COLOR, font=FONT, width=60)
+txt.grid(row=1, column=0, columnspan=2)
+
+scrollbar = Scrollbar(txt)
+scrollbar.place(relheight=1, relx=0.974)
+
+e = Entry(root, bg=BG_GRAY, fg=TEXT_COLOR, font=FONT, width=55)
+e.grid(row=2, column=0)
+
+send_button = Button(root, text="Send", font=FONT_BOLD, bg=BG_GRAY, command=send)
+send_button.grid(row=2, column=1)
+
+root.mainloop()
